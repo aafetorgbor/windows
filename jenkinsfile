@@ -1,0 +1,34 @@
+pipeline {
+    
+  agent any
+
+    stages{
+        stage('WINDOWS TEST') {
+            
+            agent {
+             label "windows-agent"
+          }
+          
+            steps {
+                bat '''
+                python -V
+
+                ipconfig /all
+           
+                '''
+            }
+        }
+        
+        stage('BUILD') {
+            steps {
+                echo 'Building Docker Image'
+            }
+        }
+        
+        stage('DEPLOY') {
+            steps {
+                echo 'Deploying'
+            }
+        }
+    }
+}
