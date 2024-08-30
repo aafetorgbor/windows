@@ -1,13 +1,12 @@
 pipeline {
     
-  agent any
-
-    stages{
-        stage('WINDOWS TEST') {
-            
-            agent {
+  agent {
              label "windows-agent"
           }
+
+    stages{
+        stage('checkout') {
+            checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/aafetorgbor/windows.git']])
           
             steps {
                 bat '''
