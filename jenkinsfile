@@ -6,21 +6,22 @@ pipeline {
 
     stages{
         stage('checkout') {
-            checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/aafetorgbor/windows.git']])
-          
+            
             steps {
-                bat '''
-                python -V
 
-                ipconfig /all
-           
-                '''
+               checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/aafetorgbor/windows.git']])
+               
             }
         }
         
         stage('BUILD') {
             steps {
-                echo 'Building Docker Image'
+                 bat '''
+                python -V
+
+                ipconfig /all
+           
+                '''
             }
         }
         
